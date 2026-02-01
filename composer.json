@@ -1,0 +1,8 @@
+{
+    "name": "myvendor/my-project",
+    "description": "A PHP application",
+    "require": {
+      "php": ">=7.4"
+    }
+  }
+  
